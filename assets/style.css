@@ -1,3 +1,8 @@
+html{
+    height: 100%;
+    padding: 15px;
+}
+
 .dash{
     font-size: 35px;
 }
