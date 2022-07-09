@@ -9,4 +9,5 @@ Github:https://github.com/russelldnn/Weather_App
 Deployed:https://russelldnn.github.io/Weather_App/
 
 Preview:
+![weather](https://user-images.githubusercontent.com/104922988/178083475-e65968a8-ef1d-4217-a83a-0a5d548878e0.PNG)
 
