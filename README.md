@@ -6,5 +6,5 @@ Allows for sort term memory storage of locations saved for easy checkups.
 Shows both current weather and weather predictions up to 5 days in the future.
 
 Github:
-Deployed:
+Deployed:https://russelldnn.github.io/Weather_App/
 
