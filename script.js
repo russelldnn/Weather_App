@@ -1,4 +1,4 @@
-
+// the search button and the list of past searchs
 let searchBtn = $("#searchBtn");
 
 let listHistory = $(".listHistory");
@@ -11,14 +11,14 @@ let listHistory = $(".listHistory");
 
 
 
-
+//initial function to take in the user input of a place then fetch data using openweathers api
 function findInput() {
 
     let cityName = ($("#userInput")[0].value);
     console.log(cityName);
-
+    //hard coded my api URL and key because it was static
     let apiURL = "https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid=0a183220c7da455b2dfc6ac2a25bb1d1";
-
+    //fetch using the api url, code and the user inputted city name immediately appends the search to history
     fetch(apiURL).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
@@ -30,7 +30,7 @@ function findInput() {
                 let pairedLocate = lat.toString() + " " + long.toString();
 
                 localStorage.setItem(cityName, pairedLocate);
-
+                //different api (oneshot) that includes latitude and longitude 
                 let apiURLOneShot = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+long+"&exclude=minutely,hourly&appid=0a183220c7da455b2dfc6ac2a25bb1d1";
 
                 fetch(apiURLOneShot).then(function (anotherResponse){
@@ -47,13 +47,13 @@ function findInput() {
 
 function currentWeather(data) {
     $(".1Forecast").addClass("visible");
-
+    //function to update the cards with fetch results
     $("#currentIcon")[0].src = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png";
     $("#temperature")[0].textContent = "Temperature: " + data.current.temp.toFixed(1) + " \u2109";
     $("#humidity")[0].textContent = "Humidity: " + data.current.humidity + "% ";
     $("#wind-speed")[0].textContent = "Wind Speed: " + data.current.wind_speed.toFixed(1) + " MPH";
     $("#uv-index")[0].textContent = "  " + data.current.uvi;
-
+    //if else statements to decide what uv index severity the displayed uv index is
     if (data.current.uvi < 3) {
         $("#uv-index").removeClass("moderate severe");
         $("#uv-index").addClass("favorable");
@@ -67,7 +67,7 @@ function currentWeather(data) {
 
     getFutureWeather(data);
 }
-
+//similar function but for the next 5 days
 function getFutureWeather(data) {
     for (let i = 0; i < 5; i++) {
         let futureWeather = {
@@ -88,7 +88,7 @@ function getFutureWeather(data) {
 
     }}
 
-
+//click listener to begin the call
 searchBtn.on("click", function (start) {
     start.preventDefault();
     findInput();
